@@ -57,10 +57,21 @@
 			color: #fff;
 
 		}
+
+		#search {
+			width: 80%;
+			height: 40px;
+			font-size: 30px;
+			padding: 10px;
+			margin: 10px;
+			outline: none;
+			border: solid 1px #000;
+		}
 	</style>
 
 	<body style="text-align: center; font-size: 30px;">
 		<div id="result" class="wbr">empty</div>
+		<input type="text" placeholder="search" id="search">
 		<div id="infoBase">
 		</div>
 		<div>
@@ -332,6 +343,19 @@
 				]
 			},
 			{
+				title: 'dr nguyen giap',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'doctornguyengiap@gmail.com',
+					},
+					{
+						infoTitle: 'hotline',
+						infoValue: '0909886054',
+					},
+				]
+			},
+			{
 				title: 'báo VOV',
 				info: [
 					{
@@ -465,11 +489,112 @@
 				info: [
 					{
 						infoTitle: 'email',
-						infoValue: 'etoanvinatphcm@gmail.com',
+						infoValue: 'ketoanvinatphcm@gmail.com',
 					},
 				]
 			},
-
+			{
+				title: 'shop hoa flowersight',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'info@flowersight.com',
+					},
+					{
+						infoTitle: 'sđt',
+						infoValue: '0362798979',
+					},
+				]
+			},
+			{
+				title: 'shop hoa linh',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'shophoalinhflower@gmail.com',
+					},
+				]
+			},
+			{
+				title: 'the legend bds vidieu',
+				info: [
+					{
+						infoTitle: 'đ/c',
+						infoValue: 'BẤTĐỘNGSẢNVIDIỆU.COM',
+					},
+					{
+						infoTitle: 'sđt',
+						infoValue: '0567156768',
+					},
+				]
+			},
+			{
+				title: 'nuocda sach',
+				info: [
+					{
+						infoTitle: 'sđt',
+						infoValue: 'nuocdasach99@gmail.com',
+					},
+				]
+			},
+			{
+				title: 'seoul academy',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'tuyensinhseoulacademy@diemnhan.vn',
+					},
+				]
+			},
+			{
+				title: 'seoul center',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'cskh@seoulcenter.vn',
+					},
+				]
+			},
+			{
+				title: 'thietkenoithat seoul',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'noithat@diemnhan.vn',
+					},
+				]
+			},
+			{
+				title: 'nha khoa shark seoul',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'cskh@nhakhoashark.vn',
+					},
+					{
+						infoTitle: 'sđt',
+						infoValue: '18002069-(+84)941623322',
+					},
+				]
+			},	
+			{
+				title: 'fpt cloud',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'support@fptcloud.com',
+					},
+				]
+			},	
+			{
+				title: 'webhd',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'info@webhd.vn',
+					},
+				]
+			},						
 		]
 		const infoBase = document.getElementById('infoBase');
 		const result = document.getElementById('result');
@@ -486,7 +611,7 @@
 								</div>
 							</div>`
 			})
-			infoElm += `</div>`
+			infoElm += `</div><hr>`
 		})
 		infoBase.innerHTML = infoElm;
 
@@ -496,6 +621,36 @@
 				navigator.clipboard.writeText(val.target.value);
 				result.innerText = val.target.value + ` copied!`;
 			});	
+		})
+
+		const search = document.getElementById('search');
+		search.addEventListener('keyup', (val) => {
+			let words = val.target.value;
+			let infoDataFilter = infoData.filter(val => val.title.toLowerCase().replace(/\s+/g,"").includes(words.toLowerCase().replace(/\s+/g,"")));
+			let infoElmSearch = '';
+			infoDataFilter.forEach(val => {
+				infoElmSearch += `<div class="mb-30"><div class="fw-bold txt-cap fs-20 mb-10 txt-blue">${val.title}</div>`
+				val.info.forEach(inf => {
+					infoElmSearch += `<div class="mb-30">
+									<div class="fw-bold mb-10 txt-cap">${inf.infoTitle}</div>
+									<div class="mb-10 wbr">${inf.infoValue}</div>
+									<div>
+										<button value="${inf.infoValue}" class="btn-custom">copy</button>
+									</div>
+								</div>`
+				})
+				infoElmSearch += `</div><hr>`
+			})
+			infoBase.innerHTML = infoElmSearch;
+
+			
+			let btnList = Array.from(document.getElementsByTagName('button'));
+			btnList.forEach(btn => {
+				btn.addEventListener('click', val => {
+					navigator.clipboard.writeText(val.target.value);
+					result.innerText = val.target.value + ` copied!`;
+				});	
+			})
 		})
 	</script>
 </html>
