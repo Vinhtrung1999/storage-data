@@ -37,12 +37,15 @@
 			color: red;
 			padding: 10px 0;
 			font-weight: 600;
+		}
+
+		.wbr {
 			word-break: break-all;
 		}
 	</style>
 
 	<body style="text-align: center; font-size: 30px;">
-		<div id="result">empty</div>
+		<div id="result" class="wbr">empty</div>
 		<div id="infoBase">
 		</div>
 		<div>
@@ -105,7 +108,7 @@
 			val.info.forEach(inf => {
 				infoElm += `<div class="mb-30">
 								<div class="fw-bold mb-10 txt-cap">${inf.infoTitle}</div>
-								<div class="mb-10">${inf.infoValue}</div>
+								<div class="mb-10 wbr">${inf.infoValue}</div>
 								<div>
 									<button value="${inf.infoValue}" style="font-size: 30px">copy</button>
 								</div>
