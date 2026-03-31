@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		* {
+			box-sizing: content-box;
+			margin: 0;
+			padding: 0;
+		}
+		.txt-blue {
+			color: blue;
+		}
+
+		.fw-bold {
+			font-weight: bold;
+		}
+
+		.mb-10 {
+			margin-bottom: 10px;
+		}
+
+		.mb-30 {
+			margin-bottom: 30px;
+		}
+
+		.fs-20 {
+			font-size: 50px;
+		}
+
+		.txt-cap {
+			text-transform: capitalize;
+		}
+
+		.info-value {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			margin-bottom: 10px;
+		}
+		/* sticky */
+		#result {
+			position: sticky;
+			top: 0;
+			background-color: #000;
+			color: red;
+			padding: 10px 0;
+			font-weight: 600;
+		}
+	</style>
+
+	<body style="text-align: center; font-size: 30px;">
+		<div id="result">empty</div>
+		<div id="infoBase">
+		<!-- <div>
+			<div style=" font-size:20px; font-weight: bold; margin-bottom: 5px; text-transform: capitalize;">the legend tlgdn</div>
+			<div style="display: flex; justify-content: center; gap: 10px;">
+				<div>info@thelegend-tlgdn.com</div>
+				<div>
+					<button value="info@thelegend-tlgdn.com">copy</button>
+				</div>
+			</div>
+			<div style="display: flex; justify-content: center; gap: 10px;">
+				<div>0567156768</div>
+				<div>
+					<button value="0567156768">copy</button>
+				</div>
+			</div>
+			<div style="display: flex; justify-content: center; gap: 10px;">
+				<div>484-486Đường2tháng9,HòaCườngNam,HảiChâu,ĐàNẵng.</div>
+				<div>
+					<button value="484-486Đường2tháng9,HòaCườngNam,HảiChâu,ĐàNẵng.">copy</button>
+				</div>
+			</div>
+		</div> -->
+		</div>
+		<div>
+
+	</div>
+	</body>
+
+	<script>
+		const infoData = [
+			{
+				title: 'the legend tlgdn',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'info@thelegend-tlgdn.com',
+					},
+					{
+						infoTitle: 'sđt',
+						infoValue: '0567156768',
+					},
+					{
+						infoTitle: 'đ/c',
+						infoValue: '484-486Đường2tháng9,HòaCườngNam,HảiChâu,ĐàNẵng.',
+					},
+				]
+			},
+			{
+				title: 'surface',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'marketingsurfacecity.vn@gmail.com',
+					},
+					{
+						infoTitle: 'sđt',
+						infoValue: '0985.130.140',
+					},
+				]
+			},
+			{
+				title: 'phumyhungreals',
+				info: [
+					{
+						infoTitle: 'email',
+						infoValue: 'phumyhungreals@gmail.com',
+					},
+					{
+						infoTitle: 'sđt',
+						infoValue: '0899999006',
+					},
+				]
+			},
+		]
+		const infoBase = document.getElementById('infoBase');
+		const result = document.getElementById('result');
+
+		let infoElm = '';
+		infoData.forEach(val => {
+			infoElm += `<div class="mb-30"><div class="fw-bold txt-cap fs-20 mb-10 txt-blue">${val.title}</div>`
+			val.info.forEach(inf => {
+				infoElm += `<div>
+								<div class="fw-bold mb-10 txt-cap">${inf.infoTitle}</div>
+								<div class="info-value">
+									<div>${inf.infoValue}</div>
+									<div>
+										<button value="${inf.infoValue}" style="font-size: 30px">copy</button>
+									</div>
+								</div>
+							</div>`
+			})
+			infoElm += `</div>`
+		})
+		infoBase.innerHTML = infoElm;
+
+		let btnList = Array.from(document.getElementsByTagName('button'));
+		btnList.forEach(btn => {
+			btn.addEventListener('click', val => {
+				navigator.clipboard.writeText(val.target.value);
+				result.innerText = val.target.value + ` copied!`;
+			});	
+		})
+	</script>
+</html>
+
